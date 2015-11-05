@@ -1,0 +1,9 @@
+#!/bin/bash
+#DEBHELPER#
+set -e
+case $1 in
+  *)
+    rm -rf /etc/moonlight-osmc
+    rm -rf /usr/bin/moonlight-osmc-config
+  ;;
+esac

@@ -1,0 +1,63 @@
+#!/bin/bash
+# dodslaser 2015
+
+if [ $(id -u) -ne 0 ]; then
+  echo "You are not root"
+  exit 1
+fi
+
+MOONLIGHT_DATA=/home/osmc/.kodi/userdata/addon_data/script.moonlight-osmc
+
+reset_fb(){
+  /usr/bin/clear > /dev/tty1
+  /bin/fbset -depth 8 && /bin/fbset -depth 16 > /dev/tty1
+}
+
+chmod a+rw /dev/tty1
+export TERM=linux
+reset_fb
+
+if [ ! -d $MOONLIGHT_DATA ]; then
+  mkdir -p $MOONLIGHT_DATA
+fi
+
+if [ ! -L $MOONLIGHT_DATA/moonlight ]; then
+  if [ -f /usr/local/bin/moonlight ]; then
+    ln -f -s /usr/local/bin//moonlight $MOONLIGHT_DATA/moonlight
+  elif [ -f /usr/bin/moonlight ]; then
+    ln -f -s /usr/bin/moonlight $MOONLIGHT_DATA/moonlight
+  else
+    echo "Binary for moonlight-embedded not found"
+    reset_fb
+    /usr/bin/ply-image 1 > /dev/tty1
+    exit 1
+  fi
+fi
+
+if [ -z $1 ]; then
+  echo "No IP specified"
+  reset_fb
+  /usr/bin/ply-image 1 > /dev/tty1
+  exit 1
+else
+  sudo -u osmc $MOONLIGHT_DATA/moonlight pair 192.168.1.202 > /dev/tty1
+  errcode=$?
+  if [ $? -eq 0 ]; then
+    /usr/bin/ply-image > /dev/tty1
+    if [ -f  $MOONLIGHT_DATA/moonlight.conf ]; then
+      sudo -u osmc $MOONLIGHT_DATA/moonlight stream $1 -config $MOONLIGHT_DATA/moonlight.conf  > /dev/tty1
+    else
+      echo "Configuration file not found"
+      reset_fb
+      sudo -u osmc $MOONLIGHT_DATA/moonlight stream $1 > /dev/tty1
+    fi
+    reset_fb
+    /usr/bin/ply-image > /dev/tty1
+  else
+    echo "Moonlight-embedded encountered a problem when pairing"
+    reset_fb
+    /usr/bin/ply-image 1 > /dev/tty1
+    exit 1
+  fi
+fi
+exit 0
