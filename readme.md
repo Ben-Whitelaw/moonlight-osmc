@@ -15,7 +15,7 @@ Provides a systemd service and laucnher script for running [moonlight-embedded](
 - Configure moonlight-embedded using the add-on's settings
 - Moonlight can be started directly by launching the add-on
 - You can also start it using systemctl
-```shell
+```
 # systemctl start moonlight-osmc@<host_ip>
 ```
 
@@ -28,7 +28,7 @@ Provides a systemd service and laucnher script for running [moonlight-embedded](
 
 ## Building the packages
 Use the included Vagrantfile. If all goes well the packages will be placed in the source directory.
-```shell
+```
 $ git clone https://github.com/dodslaser/moonlight-osmc.git
 $ cd moonlight-osmc
 $ vagrant up
