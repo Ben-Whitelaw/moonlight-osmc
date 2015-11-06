@@ -40,7 +40,7 @@ if [ -z $1 ]; then
   /usr/bin/ply-image 1 > /dev/tty1
   exit 1
 else
-  sudo -u osmc $MOONLIGHT_DATA/moonlight pair 192.168.1.202 > /dev/tty1
+  sudo -u osmc $MOONLIGHT_DATA/moonlight pair $1 > /dev/tty1
   errcode=$?
   if [ $? -eq 0 ]; then
     /usr/bin/ply-image > /dev/tty1

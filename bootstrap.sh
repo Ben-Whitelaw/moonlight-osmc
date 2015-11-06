@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-apt-get update
-apt-get install -y build-essential devscripts debhelper dh-systemd
+# apt-get update
+# apt-get install -y build-essential devscripts debhelper dh-systemd
 SOURCE=moonlight-osmc_$(head -c21 /vagrant/debian/changelog | tail -c5)
 rm -rf /home/vagrant/build/
 mkdir -p /home/vagrant/build/$SOURCE/
