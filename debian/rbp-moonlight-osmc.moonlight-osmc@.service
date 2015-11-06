@@ -1,12 +1,12 @@
 [Unit]
-Description = Service for launching moonlight streams in OSMC on Raspberry Pi 2 Model B
+Description = Service for launching moonlight streams in OSMC on Raspberry Pi (1 and 2)
 Conflicts = mediacenter.service
 
 [Service]
 Type = simple
-ExecStartPre = /sbin/modprobe snd_bcm2836
+ExecStartPre = /sbin/modprobe snd_bcm2835
 ExecStart = /usr/bin/moonlight-osmc %i
-ExecStopPost = /sbin/rmmod snd_bcm2836
+ExecStopPost = /sbin/rmmod snd_bcm2835
 ExecStopPost = /bin/systemctl restart mediacenter
 
 [Install]

@@ -1,4 +1,10 @@
-moonlight-osmc (0.3.0) jessie; urgency=medium
+moonlight-osmc (0.3.2) jessie; urgency=medium
+
+  * Merge Raspberry Pi versions
+
+ -- Erik Lundgren <eriklundgren93@gmail.com>  Fri, 06 Nov 2015 08:32:17 +0000
+
+moonlight-osmc (0.3.1) jessie; urgency=medium
 
   * Complete rewrite of the code
   * Implemented a systemd service
