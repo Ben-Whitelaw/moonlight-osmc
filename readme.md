@@ -14,7 +14,7 @@ Provides a systemd service and laucnher script for running [moonlight-embedded](
 ## Usage
 - Configure moonlight-embedded using the add-on's settings
 - Moonlight can be started directly by launching the add-on
-- You can also start it using systemctl
+- You can also launch a stream using systemctl
 ```
 # systemctl start moonlight-osmc@<host_ip>
 ```
@@ -22,9 +22,9 @@ Provides a systemd service and laucnher script for running [moonlight-embedded](
 ## Notes
 - `moonlight-osmc` **WILL NOT WORK** on distributions other than OSMC!
 - Version 0.3.0 is completely rewritten from scratch. The package should clean up the old files, but it might be a better idea to run `apt-get purge moonlight-osmc` before installing the new version.
-- Controller stuff isn't enabled in the add-on. I'm working on this. Expect basic input support soon.
 - @swetoast is working on adding better support for gamepads to the project.
-- I've included a deb for the Pi 2, but I don't own one so I can't test it. Expect bugs.
+- Controllers **should** work as of 0.3.3, but might still break in some cases.
+- Mapping gamepads still has to be done over ssh.
 
 ## Building the packages
 Use the included Vagrantfile. If all goes well the packages will be placed in the source directory.
@@ -35,6 +35,5 @@ $ vagrant up
 ```
 
 ## To-do
-- Controller support
 - Pairing should be done via the add-on
-- Mapping gamepads should be done there too, once gamepad support is added
+- Mapping gamepads should be done there too

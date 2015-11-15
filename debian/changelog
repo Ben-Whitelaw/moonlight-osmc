@@ -1,3 +1,9 @@
+moonlight-osmc (0.3.3) trusty; urgency=medium
+
+  * Bugfixes and minor improvements
+
+ -- Erik Lundgren <eriklundgren93@gmail.com>  Sun, 15 Nov 2015 21:37:42 +0000
+
 moonlight-osmc (0.3.2) jessie; urgency=medium
 
   * Merge Raspberry Pi versions

@@ -40,16 +40,14 @@ if [ -z $1 ]; then
   /usr/bin/ply-image 1 > /dev/tty1
   exit 1
 else
-  sudo -u osmc $MOONLIGHT_DATA/moonlight pair $1 > /dev/tty1
-  errcode=$?
+  sudo -u osmc $MOONLIGHT_DATA/moonlight pair $1 -keydir $MOONLIGHT_DATA/keys > /dev/tty1
   if [ $? -eq 0 ]; then
-    /usr/bin/ply-image > /dev/tty1
-    if [ -f  $MOONLIGHT_DATA/moonlight.conf ]; then
-      sudo -u osmc $MOONLIGHT_DATA/moonlight stream $1 -config $MOONLIGHT_DATA/moonlight.conf  > /dev/tty1
+    reset_fb
+    if [ -f $MOONLIGHT_DATA/moonlight-osmc.conf ]; then
+      sudo -u osmc $MOONLIGHT_DATA/moonlight stream $1 -keydir $MOONLIGHT_DATA/keys -config $MOONLIGHT_DATA/moonlight-osmc.conf  > /dev/tty1
     else
-      echo "Configuration file not found"
-      reset_fb
-      sudo -u osmc $MOONLIGHT_DATA/moonlight stream $1 > /dev/tty1
+      echo "Configuration not found, using defaults"
+      sudo -u osmc $MOONLIGHT_DATA/moonlight stream $1 -keydir $MOONLIGHT_DATA/keys > /dev/tty1
     fi
     reset_fb
     /usr/bin/ply-image > /dev/tty1
