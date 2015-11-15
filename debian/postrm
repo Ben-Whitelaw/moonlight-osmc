@@ -3,6 +3,8 @@
 set -e
 case $1 in
   *)
-    rm -rf /etc/moonlight-osmc
+    if [ -d /home/osmc/.kodi/userdata/addon_data/script.moonlight-osmc ]; then
+      rm -rf /home/osmc/.kodi/userdata/addon_data/script.moonlight-osmc
+    fi
   ;;
 esac

@@ -1,3 +1,0 @@
-MOONLIGHT_RES = '-1080'
-MOONLIGHT_IP = x.x.x.x
-MOONLIGHT_ARGS = '-30fps'
